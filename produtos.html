@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
+    <!--padrão de caracteres-->
     <meta name="Projeto Grau A - Dev WEb">
+    <!--fornecimento de dados de busca para o navegador-->
     <link rel="stylesheet" href="style.css">
     <title>Projeto Grau A</title>
 </head>
@@ -20,14 +22,15 @@
         <!-- Logo da loja / link para a Home -->
         <div class="logo">
             <a href="pjt ga.html">
-                <img src="V1.png">
+                <img src="V1.png" alt="Logo da loja">
             </a>
         </div>
         <!-- Links de navegação (Home / Produtos) -->
         <div class="navlinks">
             <a class="linksdabarra" href="pjt ga.html">Home</a>
             <a class="linksdabarra" href="produtos.html">Produtos</a>
-
+            <a class="linksdabarra" href="institucional.html">Institucional</a>
+            <a class="linksdabarra" href="sac.html">Fale Conosco</a>
         </div>
     </nav>
 
@@ -41,48 +44,50 @@
 
         <!-- Cada .card é um produto: imagem clicável + nome -->
         <div class="card">
-            <a href="link do produto">
-                <img src="Camiseta.svg">
+            <a href="camiseta.html">
+                <img src="Camiseta.svg" alt="Camiseta Oversized">
             </a>
             <p class="p">Camiseta Oversized</p>
         </div>
 
         <div class="card">
             <a href="link do produto">
-                <img src="Five Panel.svg">
+                <img src="Five Panel.svg" alt="Five Panel">
             </a>
             <p class="p">Five Panel</p>
         </div>
 
-
         <div class="card">
             <a href="link do produto">
-                <img src="Puffer.svg">
+                <img src="Puffer.svg" alt="Jaqueta Puffer">
             </a>
-            <p class="p">Jagueta Puffer</p>
+            <p class="p">Jaqueta Puffer</p>
         </div>
 
-
         <div class="card">
             <a href="link do produto">
-                <img src="Caneca.svg">
+                <img src="Caneca.svg" alt="Caneca">
             </a>
             <p class="p">Caneca</p>
         </div>
 
-
         <div class="card">
             <a href="link do produto">
-                <img src="Termica.svg">
+                <img src="Termica.svg" alt="Garrafa Térmica">
             </a>
             <p class="p">Garrafa Térmica</p>
-
-
         </div>
+
+        <!-- Para adicionar um novo produto, basta copiar um bloco .card acima,
+             trocar a imagem, o link e o texto do <p> -->
+
     </div>
 
+    <!-- ===== Rodapé, igual ao da Home ===== -->
+    <footer class="rodape">
+        &copy; Projeto Grau A
+    </footer>
 
-    </nav>
 </body>
 
 </html>

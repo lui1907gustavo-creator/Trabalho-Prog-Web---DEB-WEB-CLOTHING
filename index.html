@@ -1,10 +1,18 @@
 <!DOCTYPE html>
+<!-- Documento em português do Brasil -->
 <html lang="pt-BR">
 
 <head>
+    <!-- Define a codificação de caracteres do documento (acentos, cedilha, etc.) -->
     <meta charset="UTF-8">
+
+    <!-- Descrição usada por buscadores (SEO) -->
     <meta name="description" content="Projeto Grau A - Dev Web">
+
+    <!-- Importa a folha de estilos que define toda a aparência do site -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Título exibido na aba do navegador -->
     <title>Projeto Grau A</title>
 </head>
 
@@ -32,10 +40,35 @@
         <div class="navlinks">
             <a class="linksdabarra" href="pjt ga.html">Home</a>
             <a class="linksdabarra" href="produtos.html">Produtos</a>
+            <a class="linksdabarra" href="institucional.html">Institucional</a>
+            <a class="linksdabarra" href="sac.html">Fale Conosco</a>
+
+
         </div>
 
     </nav>
-    <hr>
+
+    <!-- ===== Carrossel de destaque da Home ===== -->
+    <!-- Trilho horizontal com "encaixe" de slide (scroll-snap); a seta avança um slide por clique -->
+    <section class="hero">
+        <div class="hero-track" id="heroTrack">
+            <div class="hero-slide">
+                <img src="hero1.jpg" alt="Camiseta estilizada da coleção">
+            </div>
+            <div class="hero-slide">
+                <img src="Puffer.png" alt="Jaqueta Puffer da coleção">
+            </div>
+        </div>
+
+        <button class="hero-arrow" id="heroNext" aria-label="Ver próximo destaque">
+            &#10095;
+        </button>
+    </section>
+
+    <!-- ===== Rodapé, presente em todas as páginas ===== -->
+    <footer class="rodape">
+        &copy; Projeto Grau A
+    </footer>
 
 </body>
 

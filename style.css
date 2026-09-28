@@ -5,9 +5,10 @@
 :root {
     --bg: #e8e4dc;                     /* Bone: cor de fundo geral do site */
     --ink: #080808;                    /* Obsidian: cor do texto principal / navbar / barra de aviso */
-    --ink-soft: #666666;               /* Smoke: cor de texto secundário (nome dos produtos) */
-    --accent: #5a111b;                 /* Blood Wine: cor de destaque (links, linhas, hover) */
-    --line: rgba(102, 102, 102, 0.35); /* Smoke com transparência: bordas finas dos cards */
+    --ink-soft: #666666;               /* Smoke: cor de texto secundário */
+    --accent: #5a111b;                 /* Blood Wine: cor de destaque (links, linhas, botões) */
+    --accent-hover: #7c1c29;           /* Blood Wine um pouco mais claro, usado no hover */
+    --line: rgba(102, 102, 102, 0.35); /* Smoke com transparência: bordas finas e divisórias */
     --card-bg: #f5f2ea;                /* Ivory: fundo dos cartões de produto */
 }
 
@@ -32,29 +33,27 @@ body {
 
 /* ===== Barra de aviso/promoção (topo do site) ===== */
 #borda {
-    border-bottom: 1px solid var(--accent); /* linha fina de destaque embaixo da barra */
+    border-bottom: 1px solid var(--accent);
     height: 32px;
     position: relative;
-    overflow: hidden;                       /* esconde o texto enquanto ele "sai" da tela */
+    overflow: hidden;
     background-color: var(--ink);
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-/* Texto que corre dentro da barra de aviso */
 #textodentrodabarra {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.2px;
     color: #f5f2ea;
     position: absolute;
-    white-space: nowrap;                    /* impede que o texto quebre linha */
-    animation: passar 25s linear infinite;   /* aplica a animação definida abaixo, em loop */
-    will-change: transform;                  /* otimização de performance da animação */
+    white-space: nowrap;
+    animation: passar 25s linear infinite;
+    will-change: transform;
 }
 
-/* Animação: move o texto da direita (100%) para a esquerda (-100%) */
 @keyframes passar {
     from {
         left: 100%;
@@ -77,7 +76,6 @@ body {
     gap: 38px;
 }
 
-/* Espaço reservado para a logo */
 .logo {
     width: 90px;
     height: 90px;
@@ -85,7 +83,6 @@ body {
     align-items: center;
 }
 
-/* Imagem da logo: mantém proporção dentro da área reservada */
 .logo img {
     height: 78px;
     width: 78px;
@@ -93,7 +90,6 @@ body {
     object-fit: contain;
 }
 
-/* Container dos links de navegação */
 .navlinks {
     display: flex;
     align-items: center;
@@ -101,7 +97,6 @@ body {
     font-size: 15px;
 }
 
-/* Estilo padrão dos links do menu */
 .linksdabarra {
     position: relative;
     text-decoration: none;
@@ -111,7 +106,6 @@ body {
     transition: color 0.2s ease;
 }
 
-/* Linha invisível (largura 0) usada para criar o efeito de sublinhado ao passar o mouse */
 .linksdabarra::after {
     content: "";
     position: absolute;
@@ -123,27 +117,87 @@ body {
     transition: width 0.25s ease;
 }
 
-/* Ao passar o mouse, o link muda de cor... */
 .linksdabarra:hover {
     color: var(--accent);
 }
 
-/* ...e a linha embaixo "cresce" até 100% da largura */
 .linksdabarra:hover::after {
     width: 100%;
 }
 
-/* Contorno visível ao navegar pelo teclado (acessibilidade) */
 .linksdabarra:focus-visible,
 .logo a:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
 
-/* Remove a margem e borda padrão do <hr> do navegador */
 hr {
     margin: 0;
     border: 0;
+}
+
+/* ===== Carrossel de destaque da Home ===== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+    background-color: var(--ink);
+}
+
+.hero-track {
+    height: 100%;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.hero-track::-webkit-scrollbar {
+    display: none;
+}
+
+.hero-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    scroll-snap-align: start;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-arrow {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--accent);
+    color: var(--card-bg);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.hero-arrow:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.hero-arrow:focus-visible {
+    outline: 2px solid var(--card-bg);
+    outline-offset: 3px;
 }
 
 /* Container central do conteúdo (usado se a página tiver uma tag <main>) */
@@ -159,13 +213,12 @@ main {
     padding: 0 30px;
     font-family: 'Archivo Black', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--ink);
-    font-size: clamp(30px, 4vw, 46px); /* tamanho responsivo: mínimo 30px, máximo 46px */
+    font-size: clamp(30px, 4vw, 46px);
     font-weight: 400;
     letter-spacing: -0.5px;
     line-height: 1;
 }
 
-/* Linha de destaque (cor de acento) abaixo do título */
 .hr {
     width: calc(100% - 60px);
     height: 3px;
@@ -176,44 +229,38 @@ main {
 /* ===== Grade de produtos ===== */
 .itens {
     display: grid;
-    /* colunas flexíveis: cria quantas couberem, cada uma com no mínimo 190px */
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 28px 22px; /* espaço entre linhas e colunas */
+    gap: 28px 22px;
     width: 100%;
     padding: 0 30px 60px;
 }
 
-/* Cartão de cada produto */
 .card {
     min-width: 0;
     text-align: center;
-    background-color: var(--card-bg);
+    background-color: var(--bg);
     border: 1px solid var(--line);
     border-radius: 3px;
     padding: 18px 16px 20px;
     transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
-/* Ao passar o mouse: destaca a borda e "levanta" levemente o cartão */
 .card:hover {
     border-color: var(--accent);
     transform: translateY(-3px);
 }
 
-/* Área clicável (link) dentro do cartão, envolvendo a imagem */
 .card a {
     display: block;
     overflow: hidden;
     border-radius: 2px;
 }
 
-/* Contorno visível ao navegar pelo teclado (acessibilidade) */
 .card a:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
 
-/* Imagem do produto */
 .card img {
     display: block;
     width: 100%;
@@ -223,12 +270,10 @@ main {
     transition: transform 0.3s ease;
 }
 
-/* Zoom leve na imagem quando o mouse passa por cima do cartão */
 .card:hover img {
     transform: scale(1.04);
 }
 
-/* Nome do produto, abaixo da imagem */
 .p {
     margin: 14px 0 0;
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -237,6 +282,279 @@ main {
     text-align: center;
     font-weight: 600;
     letter-spacing: 0.1px;
+}
+
+/* =========================================================================
+   PÁGINA DE UM ÚNICO PRODUTO
+   Este bloco inteiro (.pag_item e tudo dentro dele) é o "molde": para criar
+   a página de outro produto, duplique o HTML e troque apenas o conteúdo
+   (imagem, texto do nome, preços e descrição) — as classes continuam
+   as mesmas e o visual sai pronto.
+   ========================================================================= */
+
+/* Duas colunas: imagem à esquerda, informações à direita */
+.pag_item {
+    display: grid;
+    grid-template-columns: minmax(0, 480px) 1fr;
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 42px 30px 60px;
+    align-items: start;
+}
+
+.pag_item-imagem img {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0;
+    border-radius: 3px;
+    background-color: var(--card-bg);
+}
+
+.pag_item-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+}
+
+/* Nome do produto */
+.descritivo_item {
+    margin: 0 0 16px;
+    font-family: 'Archivo Black', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+/* Linha com os dois preços lado a lado */
+.valores {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+/* Preço original, riscado */
+.valor_de {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    text-decoration: line-through;
+}
+
+/* Preço com desconto, em destaque */
+.valor_por {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* Texto "no PIX" abaixo dos preços */
+.pix_nota {
+    margin: 6px 0 30px;
+    font-size: 13px;
+    color: var(--ink-soft);
+}
+
+/* --- Seletor de tamanho --- */
+.tamanho {
+    margin-bottom: 28px;
+}
+
+.tamanho-titulo {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+.tamanho-opcoes {
+    display: flex;
+    gap: 10px;
+}
+
+/* esconde o input, mas mantém ele acessível (não usa display:none) */
+.tamanho-opcoes input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* a label vira a caixinha quadrada */
+.tamanho-opcoes label {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ink);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* estado selecionado: fundo cinza, como a referência */
+.tamanho-opcoes input[type="radio"]:checked + label {
+    background-color: var(--line);
+    border-color: var(--ink);
+}
+
+/* contorno ao navegar pelo teclado (acessibilidade) */
+.tamanho-opcoes input[type="radio"]:focus-visible + label {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* --- Botão "Adicionar ao carrinho" --- */
+.comprar_item {
+    margin-bottom: 28px;
+}
+
+.btn_comprar {
+    width: 100%;
+    max-width: 320px;
+    height: 50px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--accent);
+    color: var(--card-bg);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn_comprar:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn_comprar:active {
+    transform: translateY(1px);
+}
+
+.btn_comprar:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+}
+
+/* --- Cálculo de frete pelo CEP --- */
+.cep {
+    padding-top: 24px;
+    margin-bottom: 28px;
+    border-top: 1px solid var(--line);
+}
+
+.cep_titulo {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+.cep_form {
+    display: flex;
+    gap: 10px;
+    max-width: 320px;
+}
+
+.cep_input {
+    flex: 1;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--ink);
+    border-radius: 6px;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.cep_input::placeholder {
+    color: var(--ink-soft);
+}
+
+.cep_input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.cep_botao {
+    height: 44px;
+    padding: 0 18px;
+    border: 1px solid var(--ink);
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.cep_botao:hover {
+    background-color: var(--ink);
+    color: var(--card-bg);
+}
+
+.cep_botao:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* --- Descrição do produto --- */
+.descricao {
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+}
+
+.descricao_titulo {
+    margin: 0 0 14px;
+    font-family: 'Archivo Black', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.descricao_texto {
+    margin: 0 0 14px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+}
+
+.descricao_texto:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== Rodapé (presente em todas as páginas) ===== */
+.rodape {
+    width: 100%;
+    padding: 26px 30px;
+    background-color: var(--ink);
+    border-top: 1px solid var(--accent);
+    text-align: center;
+    color: #f5f2ea;
+    font-size: 13px;
+    letter-spacing: 0.2px;
 }
 
 /* ===== Ajustes para telas médias/tablets (até 700px) ===== */
@@ -260,6 +578,15 @@ main {
         gap: 20px;
         font-size: 15px;
     }
+    .hero {
+        height: 320px;
+    }
+    .hero-arrow {
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
     main {
         padding: 30px 18px 45px;
     }
@@ -272,7 +599,6 @@ main {
         margin: 0 18px 24px;
     }
     .itens {
-        /* em telas menores, fixa 2 colunas em vez de "auto-fit" */
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 22px 14px;
         padding: 0 18px 45px;
@@ -282,6 +608,19 @@ main {
     }
     .p {
         font-size: 13px;
+    }
+    .pag_item {
+        /* empilha imagem em cima, informações embaixo */
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 30px 18px 45px;
+    }
+    .btn_comprar,
+    .cep_form {
+        max-width: 100%;
+    }
+    .rodape {
+        padding: 20px 18px;
     }
 }
 
@@ -300,11 +639,20 @@ main {
         gap: 14px;
         font-size: 14px;
     }
+    .hero {
+        height: 240px;
+    }
     main {
         padding: 22px 14px 35px;
     }
     .itens {
         gap: 20px 10px;
+    }
+    .cep_form {
+        flex-direction: column;
+    }
+    .cep_botao {
+        width: 100%;
     }
 }
 
@@ -320,7 +668,12 @@ main {
     }
     .linksdabarra::after,
     .card img,
-    .card {
+    .card,
+    .hero-arrow,
+    .btn_comprar {
         transition: none;
+    }
+    .hero-track {
+        scroll-behavior: auto;
     }
 }
