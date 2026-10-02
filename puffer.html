@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="description" content="Projeto Grau A - Dev Web">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Jaqueta Puffer - Projeto Grau A</title>
+</head>
+
+<body>
+
+    <!-- Barra de aviso/promoção no topo -->
+    <div id="borda">
+        <span id="textodentrodabarra">
+            Todo o site em 10x sem juros - Compras acima de R$ 300,00 com frete grátis
+        </span>
+    </div>
+
+    <!-- Menu de navegação -->
+    <nav class="navbar">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a href="pjt ga.html">
+                <img src="V1.png" alt="Logo da loja">
+            </a>
+        </div>
+
+        <!-- Links -->
+        <div class="navlinks">
+            <a class="linksdabarra" href="pjt ga.html">Home</a>
+            <a class="linksdabarra" href="produtos.html">Produtos</a>
+            <a class="linksdabarra" href="institucional.html">Institucional</a>
+            <a class="linksdabarra" href="sac.html">Fale Conosco</a>
+        </div>
+
+    </nav>
+
+    <!-- Página de produto: Jaqueta Puffer -->
+    <div class="pag_item">
+
+        <div class="pag_item-imagem">
+            <img src="Puffer.svg" alt="Jaqueta Puffer">
+        </div>
+
+        <div class="pag_item-info">
+
+            <h1 class="descritivo_item">Jaqueta Puffer</h1>
+
+            <div class="valores">
+                <span class="valor_de">R$ 399,99</span>
+                <span class="valor_por">R$ 359,99</span>
+            </div>
+            <p class="pix_nota">no PIX</p>
+
+            <!-- Tamanhos disponíveis (o "checked" define qual vem marcado) -->
+            <div class="tamanho">
+                <span class="tamanho-titulo">Tamanho</span>
+
+                <div class="tamanho-opcoes">
+                    <input type="radio" name="tamanho" id="tam-p" value="P">
+                    <label for="tam-p">P</label>
+
+                    <input type="radio" name="tamanho" id="tam-m" value="M" checked>
+                    <label for="tam-m">M</label>
+
+                    <input type="radio" name="tamanho" id="tam-g" value="G">
+                    <label for="tam-g">G</label>
+
+                    <input type="radio" name="tamanho" id="tam-gg" value="GG">
+                    <label for="tam-gg">GG</label>
+                </div>
+            </div>
+
+            <div class="comprar_item">
+                <button type="button" class="btn_comprar">Adicionar ao carrinho</button>
+            </div>
+
+            <div class="cep">
+                <label for="cep_input" class="cep_titulo">Calcular frete</label>
+                <div class="cep_form">
+                    <input type="text" id="cep_input" class="cep_input" placeholder="00000-000" inputmode="numeric" maxlength="9">
+                    <button type="button" class="cep_botao">Calcular</button>
+                </div>
+            </div>
+
+            <div class="descricao">
+                <h2 class="descricao_titulo">Descrição</h2>
+                <p class="descricao_texto">A Jaqueta Puffer da DEV WEB Clothing une proteção e visual urbano em uma peça marcante. Os gomos acolchoados, a gola alta e o corte volumoso garantem conforto e calor nos dias mais frios.</p>
+                <p class="descricao_texto">No peito, a etiqueta com o logo DEV WEB Clothing é o ponto de destaque. Os detalhes completam a peça: puxadores do zíper com o símbolo da marca, bolsos laterais com zíper, patch no braço com argola em D e barra com elástico para um ajuste firme.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+        &copy; Projeto Grau A
+    </footer>
+
+</body>
+
+</html>
